@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: starwarsweb-deployment
+  labels:
+    app: starwarsweb
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: starwarsweb
+  template:
+    metadata:
+      labels:
+        app: starwarsweb
+    spec:
+      containers:
+      - name: starwarsweb
+        image: localhost:5000/starwarsweb
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            cpu: 200m
+      volumes:
+      - name: starswarsweb-pv
+      - name: starwarsweb-rebel-base-location
+        secret:
+          secretName: starwarsweb-rebel-base-location
+
